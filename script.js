@@ -1,39 +1,56 @@
+//Elementos HTML
 let input = document.querySelector('.input');
 let agregar = document.querySelector('.boton-agregar');
 let container = document.querySelector('.container');
+let lock = document.querySelectorAll('.botonEditar')
 
-//creando clase
-
+//Creando clase Item 
 class Item {
-    constructor(crearDiv) {
-        this.crearDiv
+    constructor(nuevaTarea) {
+        this.crearDiv(nuevaTarea);
+    }
+    crearDiv(tarea) {
+        //Agregando DIV
+        const divnuevo = document.createElement('div')
+        //Atributo del Div
+        divnuevo.classList.add('new-div')
+
+        //Atributos del input
+        const createInput = document.createElement('input');
+        createInput.setAttribute('type', 'text');
+        createInput.setAttribute('disabled', 'true');
+        createInput.classList.add('item-input');
+        createInput.value = tarea;
+        divnuevo.appendChild(createInput);
+        container.appendChild(divnuevo);
+
+        //Boton editar
+        const botonEditar = document.createElement('botonEditar');
+        botonEditar.classList.add('botonEditar');
+        botonEditar.innerHTML = '<i class="fa-solid fa-lock"></i>';
+        divnuevo.appendChild(botonEditar);
+        container.appendChild(divnuevo);
+        botonEditar.addEventListener('click', function () {
+            console.log('funcionando editar');
+        })
+
+        //Boton remover
+        const botonRemover = document.createElement('botonRemover');
+        botonRemover.classList.add('botonRemover');
+        botonRemover.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+        divnuevo.appendChild(botonRemover);
+        container.appendChild(divnuevo);
+        botonRemover.addEventListener('click', function () {
+            console.log('funcionando remover');
+        })
+
     }
 }
-
-// creando el input con sus atributos
-function crearDiv(tarea) {
-    //agregar div
-    const divnuevo = document.createElement('div')
-    //atributo del div
-    divnuevo.classList.add('new-div')
-    //atributo del input
-    const createInput = document.createElement('input');
-    createInput.setAttribute('type', 'text');
-    createInput.setAttribute('disabled', 'true');
-    createInput.classList.add('item-input');
-    createInput.value = tarea;
-    divnuevo.appendChild(createInput);
-    container.appendChild(divnuevo);
-}
-//agregando div del input
+//Funcionalidad boton agregar
 agregar.addEventListener('click', function () {
     if (input.value === ('')) {
     } else {
-        crearDiv(input.value)
+        let x = new Item(input.value)
         input.value = ''
-    } 
+    }
 })
-
-
-//nuvevo elemento html
-/*container.appendChild()*/
