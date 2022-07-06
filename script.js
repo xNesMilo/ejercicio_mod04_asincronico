@@ -31,19 +31,16 @@ class Item {
         divnuevo.appendChild(botonEditar);
         container.appendChild(divnuevo);
         botonEditar.addEventListener('click', function () {
-            console.log('funcionando editar');
         })
 
         //Boton remover
         const botonRemover = document.createElement('botonRemover');
         botonRemover.classList.add('botonRemover');
-        botonRemover.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+        botonRemover.innerHTML = '<i class="fa-solid fa-trash"></i>';
         divnuevo.appendChild(botonRemover);
         container.appendChild(divnuevo);
         botonRemover.addEventListener('click', function () {
-            console.log('funcionando remover');
         })
-
     }
 }
 //Funcionalidad boton agregar
