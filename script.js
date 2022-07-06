@@ -14,7 +14,6 @@ class Item {
         const divnuevo = document.createElement('div')
         //Atributo del Div
         divnuevo.classList.add('new-div')
-
         //Atributos del input
         const createInput = document.createElement('input');
         createInput.setAttribute('type', 'text');
@@ -23,7 +22,6 @@ class Item {
         createInput.value = tarea;
         divnuevo.appendChild(createInput);
         container.appendChild(divnuevo);
-
         //Boton editar
         const botonEditar = document.createElement('botonEditar');
         botonEditar.classList.add('botonEditar');
@@ -32,7 +30,6 @@ class Item {
         container.appendChild(divnuevo);
         botonEditar.addEventListener('click', function () {
         })
-
         //Boton remover
         const botonRemover = document.createElement('botonRemover');
         botonRemover.classList.add('botonRemover');
@@ -40,14 +37,27 @@ class Item {
         divnuevo.appendChild(botonRemover);
         container.appendChild(divnuevo);
         botonRemover.addEventListener('click', function () {
+            this.parentNode.remove()
+        })
+        //Editar y agregar icono candado abierto.
+        botonEditar.addEventListener('click', function () {
+            if (createInput.disabled) {
+                createInput.disabled = false
+                botonEditar.innerHTML = "<i class='fa-solid fa-lock-open'></i>"
+            }
+            else {
+                createInput.disabled = true
+                botonEditar.innerHTML = '<i class="fa-solid fa-lock"></i>'
+            }
         })
     }
 }
-//Funcionalidad boton agregar
-agregar.addEventListener('click', function () {
+//Funcionalidad boton agregar y chequear Input
+agregar.addEventListener('click', chequearInput) 
+    function chequearInput() {
     if (input.value === ('')) {
     } else {
         let x = new Item(input.value)
         input.value = ''
     }
-})
+}
