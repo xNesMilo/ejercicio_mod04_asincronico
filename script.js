@@ -1,8 +1,8 @@
 //Elementos HTML
-let input = document.querySelector('.input');
-let agregar = document.querySelector('.boton-agregar');
-let container = document.querySelector('.container');
-let lock = document.querySelectorAll('.botonEditar')
+const input = document.querySelector('.input');
+const agregar = document.querySelector('.boton-agregar');
+const container = document.querySelector('.container');
+const lock = document.querySelectorAll('.botonEditar')
 
 //Creando clase Item 
 class Item {
@@ -52,12 +52,12 @@ class Item {
         })
     }
 }
-//Funcionalidad boton agregar y chequear Input
-agregar.addEventListener('click', chequearInput) 
-    function chequearInput() {
-    if (input.value === ('')) {
+//Funcionalidad boton agregar y chequear Input. Se agrega trim.
+agregar.addEventListener('click', chequearInput)
+function chequearInput() {
+    if (input.value.trim() === ('')) {
     } else {
-        let x = new Item(input.value)
+        const x = new Item(input.value)
         input.value = ''
     }
 }
