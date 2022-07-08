@@ -1,8 +1,8 @@
 //Elementos HTML
 const input = document.querySelector('.input');
 const agregar = document.querySelector('.boton-agregar');
-const container = document.querySelector('.container');
-const lock = document.querySelectorAll('.botonEditar')
+const container = document.querySelector('#container');
+const lock = document.querySelectorAll('.boton-editar')
 
 //Creando clase Item 
 class Item {
@@ -13,7 +13,7 @@ class Item {
         //Agregando DIV
         const divnuevo = document.createElement('div')
         //Atributo del Div
-        divnuevo.classList.add('new-div')
+        divnuevo.classList.add('item')
         //Atributos del input
         const createInput = document.createElement('input');
         createInput.setAttribute('type', 'text');
@@ -23,16 +23,16 @@ class Item {
         divnuevo.appendChild(createInput);
         container.appendChild(divnuevo);
         //Boton editar
-        const botonEditar = document.createElement('botonEditar');
-        botonEditar.classList.add('botonEditar');
+        const botonEditar = document.createElement('boton-editar');
+        botonEditar.classList.add('boton-editar');
         botonEditar.innerHTML = '<i class="fa-solid fa-lock"></i>';
         divnuevo.appendChild(botonEditar);
         container.appendChild(divnuevo);
         botonEditar.addEventListener('click', function () {
         })
         //Boton remover
-        const botonRemover = document.createElement('botonRemover');
-        botonRemover.classList.add('botonRemover');
+        const botonRemover = document.createElement('boton-remover');
+        botonRemover.classList.add('boton-remover');
         botonRemover.innerHTML = '<i class="fa-solid fa-trash"></i>';
         divnuevo.appendChild(botonRemover);
         container.appendChild(divnuevo);
@@ -54,6 +54,14 @@ class Item {
 }
 //Funcionalidad boton agregar y chequear Input. Se agrega trim.
 agregar.addEventListener('click', chequearInput)
+
+//Funcion para agregar el texto presionando ENTER
+input.addEventListener ('keyup', function (event) {
+    if (event.keyCode == 13) {
+        chequearInput()
+    }
+})
+//Chequear INPUT
 function chequearInput() {
     if (input.value.trim() === ('')) {
     } else {
@@ -61,3 +69,4 @@ function chequearInput() {
         input.value = ''
     }
 }
+
