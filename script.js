@@ -56,7 +56,7 @@ class Item {
 agregar.addEventListener('click', chequearInput)
 
 //Funcion para agregar el texto presionando ENTER
-input.addEventListener ('keyup', function (event) {
+input.addEventListener('keyup', function (event) {
     if (event.keyCode == 13) {
         chequearInput()
     }
@@ -65,8 +65,16 @@ input.addEventListener ('keyup', function (event) {
 function chequearInput() {
     if (input.value.trim() === ('')) {
     } else {
+        saveTask(input.value)
         const x = new Item(input.value)
         input.value = ''
     }
 }
-
+//Funcion LocalStorage
+function saveTask(task) {
+    let localTasks = localStorage.getItem('tareas') || '[]';
+    localTasks = JSON.parse(localTasks)
+    localTasks.push(task);
+    localTasks = JSON.stringify(localTasks);
+    localStorage.setItem('tareas', localTasks)
+}
